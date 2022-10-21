@@ -3,6 +3,9 @@
  * 
  */
 
+
+var todolist = document.getElementById("to-do-tasks");
+
 var title = document.getElementById('title');
 
 var priority = document.getElementById('priority');
@@ -34,13 +37,14 @@ function createTask() {
         Description : description.value,
         }
         tasks.push(myobjet)
-        console.log(tasks);
-        clearData();
+        // clearData();
+        saveTask();
     }
 
     function clearData() {
         title.value = '';
-        priority.value = document.getElementById('priority  ');
+        priority.value = 'Please select';
+        statut.value = 'Please select'
         description.value = '';
     }
 
@@ -53,7 +57,26 @@ function saveTask() {
     // Ajoutez object au Array
 
     // refresh tasks
-    
+    for (var i = 0; i < tasks.length; i++) {
+        if (todolist.statut.value === 'To Do') {
+        todolist.innerHTML += `<button class="p-2 d-flex text-start border w-100" style="background-color:#CAEBF2;" id="done">
+        <div class="col-md-1">
+            <i class="bi bi-question-circle"></i> 
+        </div>
+        <div class="col-md-11">
+            <div class="fw-bold">${tasks[i].title}</div>
+            <div class="">
+                <div class="text-success">#1 created in ${tasks[i].date}</div>
+                <div class=""> ${tasks[i].description} </div>
+            </div>
+            <div class="">
+                <span class="btn btn-info rounded-pill p-2">High</span>
+                <span class="btn btn-gray-500 rounded-pill p-2">Feature</span>
+            </div>
+        </div>
+    </button>
+    ` 
+    }    
 }
 
 function editTask(index) {
@@ -103,4 +126,5 @@ function reloadTasks() {
     // Remove tasks elements
 
     // Set Task count
+}
 }
