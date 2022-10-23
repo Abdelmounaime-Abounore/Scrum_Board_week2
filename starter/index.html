@@ -5,8 +5,7 @@
 	<title>YouCode | Scrum Board</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
-	<meta content="" name="author" />
-	
+	<meta content="" name="author" />		
 	<!-- ================== BEGIN core-css ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
@@ -39,7 +38,7 @@
 				</div>
 				
 				<div class="d-flex align-items-center">
-					<button class="btn btn-success  rounded-pill"data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Task<i class="bi bi-plus"></i></button>
+					<button class="btn btn-success  rounded-pill"data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="saveButon()"> Add Task<i class="bi bi-plus"></i></button>
 				</div>
 			</div>
 			
@@ -47,12 +46,12 @@
 				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="card mb-5">
 						<div class="card-header p-2 text-white rounded-top bg-secondary">
-							<h4 class="">To do (<span id="to-do-tasks-count">5</span>)</h4>
+							<h4 class="">To do (<span id="to-do-tasks-count"></span>)</h4>
 
 						</div>
-						<div class="" id="to-do-tasks">
+						<div class="" id="to_do">
 							<!-- TO DO TASKS HERE  -->
-							<button class="p-2 d-flex text-start border w-100" style="background-color:#CAEBF2;" id="done">
+							<button class="p-2 d-flex text-start border w-100" style="background-color:#CAEBF2;">
 								<div class="col-md-1">
 									<i class="bi bi-question-circle"></i> 
 								</div>
@@ -142,7 +141,7 @@
 				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="mb-5">
 						<div class="card-header p-2 text-white rounded-top bg-secondary">
-							<h4 class="">In Progress (<span id="in-progress-tasks-count">4</span>)</h4>
+							<h4 class="">In Progress (<span id="in-progress-tasks-count"></span>)</h4>
 
 						</div>
 						<div class="" id="in-progress-tasks">
@@ -217,7 +216,7 @@
 				<div class="col-sm-12 col-md-6 col-lg-4">
 					<div class="">
 						<div class="card-header p-2 text-white rounded-top bg-secondary">
-							<h4 class="">Done (<span id="done-tasks-count">4</span>)</h4>
+							<h4 class="">Done (<span id="done-tasks-count"></span>)</h4>
 
 						</div>
 						<div class="" id="done-tasks">
@@ -313,8 +312,9 @@
 				  </button>
 				</div>
 				<div class="modal-body" style="background-color:#CAEBF2;">
-					<form>
-							<!-- title -->
+					<form id="form">
+					  
+					  <!-- title -->
 					  <div class="form-group mb-3">
 						<label class="col-sm-2 col-form-label">Title</label>
 						<div class="col-sm-12">
@@ -342,25 +342,24 @@
 							  </div>
 						  </div>
 					  </fieldset>
-					  <!-- type -->
 			  
 					  <div class="form-group">
 						     <!-- Priority -->
 							<label class="col-form-label col-sm-2">Priority</label>
 							<select class="form-select mb-3" id="priority">
 								<option selected>Please select</option>
-								<option value="1">Low</option>
-								<option value="2">Medium</option>
-								<option value="3">High</option>
-								<option value="3">Critical</option>
+								<option value="Low">Low</option>
+								<option value="Medium">Medium</option>
+								<option value="High">High</option>
+								<option value="Critical">Critical</option>
 							</select>
-							<!-- Status -->
+							<!-- Statut -->
 							<label class="col-form-label col-sm-2">Status</label>
 							<select class="form-select mb-3" id="statut">
 								<option id="op1">Please select</option>
-								<option value="1">To do</option>
-								<option value="2">In Progress</option>
-								<option value="3">Done</option>
+								<option value="To Do">To Do</option>
+								<option value="In Progress">In Progress</option>
+								<option value="Done">Done</option>
 							</select>
 						  <!-- date -->
 						  <div class="d-flex flex-column">
@@ -375,11 +374,14 @@
 							  <textarea class="form-control mb-3" id="description" rows="3"></textarea>
 						  </div>
 					  </div>
+					
 					</form>
 				</div>
 				<div class="modal-footer">
-				  	<button type="submit" class="btn btn-danger">Cancel</button>
-					<button type="submit" class="btn btn-info ml-10" id="save">Save</button>
+				  	<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				  	<button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="update" onclick="updateTask()">Update</button>
+				  	<button type="submit" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteTask()" id="delete">Delete</button>
+					<button type="submit" class="btn btn-info ml-10" data-bs-dismiss="modal" id="save" onclick="addTaks()">Save</button>
 				</div>
 			  </div>
 			</div>
@@ -390,6 +392,7 @@
 	<script src="assets/js/app.min.js"></script>
 	<script src="assets/js/data.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script>afficher()</script>
 	<!-- ================== END core-js ================== -->
 </body>
 </html>
